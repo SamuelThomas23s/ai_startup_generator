@@ -5,8 +5,9 @@ client = OpenAI(api_key=API_KEY)
 
 
 # =========================
-# CORE AI FUNCTION
+# CORE
 # =========================
+
 def ask_ai(system, user):
     response = client.chat.completions.create(
         model="gpt-4o-mini",
@@ -15,33 +16,32 @@ def ask_ai(system, user):
             {"role": "user", "content": user[:4000]}
         ]
     )
+
     return response.choices[0].message.content
 
 
 # =========================
-# STARTUP CORE FEATURES
+# STARTUP IDEA GENERATOR
 # =========================
 
 def generate_startup_idea(topic):
     return ask_ai("""
-Ты startup founder.
-Создай:
-- идею
-- проблему
-- аудиторию
-- монетизацию
-- ценность
+Создай стартап:
+- идея
+- проблема
+- решение
+- аудитория
+- монетизация
 """, topic)
 
 
 def market_analysis(idea):
     return ask_ai("""
-Сделай market analysis:
+Сделай анализ рынка:
 - рынок
 - конкуренты
 - тренды
 - риски
-- потенциал
 """, idea)
 
 
@@ -52,18 +52,17 @@ def business_plan(idea):
 - roadmap
 - маркетинг
 - монетизация
-- рост
 """, idea)
 
 
 def generate_pitch(idea):
     return ask_ai("""
-Создай pitch:
+Создай pitch deck:
 - проблема
 - решение
 - рынок
 - продукт
-- почему сейчас
+- стратегия
 """, idea)
 
 
@@ -73,53 +72,55 @@ def generate_branding(idea):
 - название
 - slogan
 - стиль
-- домен идеи
+- домены
 """, idea)
 
 
 def startup_score(idea):
     return ask_ai("""
-Оцени стартап 0-10:
-- успех
-- масштаб
-- риск
-- инвестиции
+Оцени стартап:
+- шанс успеха
+- риски
+- масштабируемость
 """, idea)
 
 
 # =========================
-# INVESTMENT & ANALYSIS
+# INVESTOR TOOLS
 # =========================
 
 def investor_analysis(idea):
     return ask_ai("""
-Ты инвестор.
+Ты венчурный инвестор.
+
 Оцени:
-- инвестировать или нет
+- стоит ли инвестировать
 - риски
-- потенциал
-- слабые стороны
+- сильные стороны
 """, idea)
 
 
 def revenue_forecast(idea):
     return ask_ai("""
-Прогноз дохода:
-- 6 мес
+Сделай прогноз:
+- 6 месяцев
 - 1 год
 - 3 года
-- ROI
 """, idea)
 
 
 def competitor_analysis(idea):
     return ask_ai("""
-Конкуренты:
-- кто
-- слабости
-- как победить
+Анализ конкурентов:
+- конкуренты
+- слабые стороны
+- возможности
 """, idea)
 
+
+# =========================
+# MVP
+# =========================
 
 def mvp_generator(idea):
     return ask_ai("""
@@ -131,37 +132,39 @@ def mvp_generator(idea):
 
 
 # =========================
-# SaaS & PRODUCT STRATEGY
+# SAAS
 # =========================
 
 def saas_ideas(topic):
     return ask_ai("""
-Сгенерируй SaaS идеи:
-- micro SaaS
+Создай SaaS идеи:
 - AI SaaS
-- прибыльные ниши
+- Micro SaaS
+- B2B SaaS
 """, topic)
 
 
 def pricing_strategy(idea):
     return ask_ai("""
-Pricing стратегия:
+Создай pricing:
 - free
 - pro
 - enterprise
-- монетизация
 """, idea)
 
 
 def unicorn_score(idea):
     return ask_ai("""
-Оцени unicorn шанс:
-- рынок
+Оцени unicorn potential:
+- TAM
 - рост
-- масштаб
-- score 0-100
+- итог 0-100
 """, idea)
 
+
+# =========================
+# FOUNDER
+# =========================
 
 def founder_analysis(founder):
     return ask_ai("""
@@ -169,205 +172,203 @@ def founder_analysis(founder):
 - сильные стороны
 - слабости
 - навыки
-- кого нанять
 """, founder)
 
 
-# =========================
-# AI COFOUNDER
-# =========================
-
 def ai_cofounder(idea):
     return ask_ai("""
-Ты AI cofounder:
-- улучшение идеи
-- стратегия роста
-- ошибки
-- советы
+Ты AI Cofounder.
+
+Помоги:
+- улучшить идею
+- рост
+- стратегия
 """, idea)
 
 
+# =========================
+# GROWTH
+# =========================
+
 def global_expansion(idea):
     return ask_ai("""
-Глобальная стратегия:
-- страны
-- локализация
-- рынки
-- риски
+Создай стратегию глобального роста.
 """, idea)
 
 
 def app_features(idea):
     return ask_ai("""
-Функции продукта:
-- core
-- premium
-- AI features
-- viral features
+Создай функции продукта.
 """, idea)
 
 
 def growth_hacking(idea):
     return ask_ai("""
-Growth hacking:
-- пользователи
-- вирусность
-- маркетинг
-- удержание
+Создай growth strategy.
 """, idea)
 
 
 # =========================
-# STARTUP VALIDATION SYSTEM
+# VALIDATION
 # =========================
 
 def validate_startup(idea):
     return ask_ai("""
-Проверь стартап:
-- проблема есть?
+Проверь идею:
+- проблема
 - рынок
 - конкуренция
-- монетизация
-- score 0-100
+- score
 """, idea)
 
 
 def customer_persona(idea):
     return ask_ai("""
-Создай customer persona:
-- кто пользователь
-- боли
-- цели
-- мотивация
+Создай customer persona.
 """, idea)
 
 
 def landing_page_generator(idea):
     return ask_ai("""
-Создай лендинг:
-- headline
-- benefits
-- features
-- CTA
+Создай лендинг.
 """, idea)
 
 
 def investor_questions(idea):
     return ask_ai("""
-20 вопросов инвестора:
-+ слабые места
-+ подготовка
+Создай вопросы инвестора.
 """, idea)
 
 
 def launch_checklist(idea):
     return ask_ai("""
-Checklist запуска:
-- validation
-- MVP
-- beta
-- launch
-- scaling
+Создай launch checklist.
 """, idea)
 
 
 # =========================
-# ADVANCED STARTUP ENGINE
+# BUSINESS MODEL
 # =========================
 
 def business_model_canvas(idea):
     return ask_ai("""
-Business Model Canvas:
-- segments
-- value
-- channels
-- revenue
-- cost
-- partners
+Создай Business Model Canvas.
 """, idea)
 
 
 def financial_model(idea):
     return ask_ai("""
-Финансовая модель:
-- расходы
-- доходы
-- прибыль
-- break-even
+Создай финансовую модель.
 """, idea)
 
 
 def tech_stack_generator(idea):
     return ask_ai("""
-Tech stack:
-- frontend
-- backend
-- DB
-- AI tools
-- cloud
+Подбери Tech Stack.
 """, idea)
 
 
 def generate_prd(idea):
     return ask_ai("""
-PRD:
-- vision
-- features
-- users
-- MVP scope
+Создай Product Requirements Document.
 """, idea)
 
 
 def development_roadmap(idea):
     return ask_ai("""
-Roadmap 12 месяцев:
-- этапы разработки
-- маркетинг
-- рост
+Создай roadmap на 12 месяцев.
 """, idea)
 
 
 def customer_acquisition_plan(idea):
     return ask_ai("""
-Customer acquisition:
-- каналы
-- CAC
-- KPI
-- стратегия
+Создай план привлечения клиентов.
 """, idea)
 
 
 def startup_advisor(question):
     return ask_ai("""
 Ты startup advisor.
-Дай экспертный ответ.
 """, question)
 
 
 def swot_analysis(idea):
     return ask_ai("""
-SWOT:
-- strengths
-- weaknesses
-- opportunities
-- threats
+Сделай SWOT анализ.
 """, idea)
 
 
 def market_entry_strategy(idea):
     return ask_ai("""
-Market entry:
-- стратегия входа
-- позиционирование
-- запуск
+Создай market entry strategy.
 """, idea)
 
 
 def startup_launch_plan(idea):
     return ask_ai("""
-Launch plan:
-- шаги запуска
-- MVP
-- первые клиенты
-- масштабирование
+Создай startup launch plan.
+""", idea)
+
+
+# =========================
+# V6 UPDATE
+# =========================
+
+def niche_finder(topic):
+    return ask_ai("""
+Найди перспективные ниши.
+""", topic)
+
+
+def startup_name_generator(idea):
+    return ask_ai("""
+Создай 30 названий стартапа.
+""", idea)
+
+
+def competitive_advantage(idea):
+    return ask_ai("""
+Создай конкурентное преимущество.
+""", idea)
+
+
+def startup_kpi(idea):
+    return ask_ai("""
+Создай KPI систему.
+""", idea)
+
+
+def fundraising_strategy(idea):
+    return ask_ai("""
+Создай стратегию привлечения инвестиций.
+""", idea)
+
+
+def ai_product_manager(idea):
+    return ask_ai("""
+Ты Product Manager.
+""", idea)
+
+
+def unit_economics(idea):
+    return ask_ai("""
+Создай Unit Economics.
+""", idea)
+
+
+def international_expansion(idea):
+    return ask_ai("""
+Создай международную стратегию.
+""", idea)
+
+
+def exit_strategy(idea):
+    return ask_ai("""
+Создай Exit Strategy.
+""", idea)
+
+
+def ai_ceo(idea):
+    return ask_ai("""
+Ты CEO стартапа.
 """, idea)
